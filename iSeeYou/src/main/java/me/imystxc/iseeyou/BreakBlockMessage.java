@@ -12,6 +12,7 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ServerLaunchWrapper;
+import net.minecraftforge.fml.server.FMLServerHandler;
 import net.minecraftforge.server.permission.PermissionAPI;
 import org.apache.logging.log4j.core.jmx.Server;
 
@@ -42,12 +43,13 @@ public class BreakBlockMessage {
             String itemInfo = Config.blocks[i];
             String[] splitInfo = itemInfo.split("/");
             String itemID = splitInfo[0];
-            PlayerList list = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList();
+            PlayerList list = FMLServerHandler.instance().getServer().getPlayerList();
+            MinecraftServer server = FMLServerHandler.instance().getServer();
 
-            for (int o = 0; o < list.getOnlinePlayerNames().length; o++) {
-                if (list.getPlayers().get(o).canUseCommand(0, "iseeyou.log.base")) {
+            for (EntityPlayerMP player : server.getPlayerList().getPlayers()) {
+                if(player.canUseCommand(0, "iseeyou.log.base")){
                     if (itemID.equals(event.getState().getBlock().getDefaultState().toString())) {
-                        list.sendMessage(new TextComponentString(regex(TextFormatting.DARK_AQUA + event.getPlayer().getName() + " &7- [" + TextFormatting.AQUA + event.getState().getBlock().getLocalizedName() + "&7] " + event.getPos().getX() + " &b/ &7" + event.getPos().getY() + " &b/ &7" + event.getPos().getZ())));
+                        player.sendMessage(new TextComponentString(regex(TextFormatting.DARK_AQUA + event.getPlayer().getName() + " &7- [" + TextFormatting.AQUA + event.getState().getBlock().getLocalizedName() + "&7] " + event.getPos().getX() + " &b/ &7" + event.getPos().getY() + " &b/ &7" + event.getPos().getZ())));
                     }
                 }
             }
