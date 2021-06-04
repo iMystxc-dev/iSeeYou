@@ -12,7 +12,7 @@ Requirements:
 
 ## Usage
 
-```python
+```yml
 Commands:
 - /icu on
 - /icu off
