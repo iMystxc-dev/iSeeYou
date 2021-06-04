@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: iSeeYou
+Implementation-Version: 1.0
+Specification-Vendor: iMystxc
+Specification-Title: iseeyou
+Implementation-Timestamp: 2021-06-04T01:20:31-0400
+Specification-Version: 1
+Implementation-Vendor: iMystxc
+

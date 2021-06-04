@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "iSeeYou",
+    "name": "ISeeYou",
+    "description": "A plugin designed to send messages to admins when players break certain blocks",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "iMystxc"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
