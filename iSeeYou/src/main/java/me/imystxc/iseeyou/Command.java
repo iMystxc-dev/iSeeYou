@@ -36,6 +36,7 @@ public class Command extends CommandBase {
             if (args[0].equals("reload")) {
                 if (sender.canUseCommand(0, "iseeyou.command.reload")) {
                     Config.reloadConfig();
+                    MessageConfig.getInstance().configLoad();
                     sender.sendMessage(new TextComponentString(BreakBlockMessage.regex("&7[&c&lICU&7] &3config has been reloaded.")));
                     return;
                 } else {

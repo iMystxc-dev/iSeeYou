@@ -44,12 +44,11 @@ public class BreakBlockMessage {
             String[] splitInfo = itemInfo.split("/");
             String itemID = splitInfo[0];
             PlayerList list = FMLServerHandler.instance().getServer().getPlayerList();
-            MinecraftServer server = FMLServerHandler.instance().getServer();
 
-            for (EntityPlayerMP player : server.getPlayerList().getPlayers()) {
-                if(player.canUseCommand(0, "iseeyou.log.base")){
-                    if (itemID.equals(event.getState().getBlock().getDefaultState().toString())) {
-                        player.sendMessage(new TextComponentString(regex(TextFormatting.DARK_AQUA + event.getPlayer().getName() + " &7- [" + TextFormatting.AQUA + event.getState().getBlock().getLocalizedName() + "&7] " + event.getPos().getX() + " &b/ &7" + event.getPos().getY() + " &b/ &7" + event.getPos().getZ())));
+            if (itemID.equals(event.getState().getBlock().getDefaultState().toString())) {
+                for (EntityPlayerMP player : list.getPlayers()) {
+                    if(player.canUseCommand(0, "iseeyou.log.base")){
+                        player.sendMessage(new TextComponentString(regex(MessageConfig.getInstance().getConfig().getNode(new Object[]{"iSeeYou", "messages","notification"}).getString().replaceAll("%player%", String.valueOf(event.getPlayer().getName()))).replaceAll("%block%", String.valueOf(event.getState().getBlock().getLocalizedName())).replaceAll("%x_pos%", String.valueOf(event.getPos().getX())).replaceAll("%y_pos%", String.valueOf(event.getPos().getY())).replaceAll("%z_pos%", String.valueOf(event.getPos().getZ()))));
                     }
                 }
             }
